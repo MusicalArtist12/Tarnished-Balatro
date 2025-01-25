@@ -5,7 +5,22 @@ SMODS.Atlas {
     px = 71,
     py = 95
 }
+
+SMODS.Atlas {
+    key = "HC_deck",
+    path = "hc_deck.png",
+    px = 71,
+    py = 95
+}
   
+SMODS.Atlas {
+    key = "LC_deck",
+    path = "lc_deck.png",
+    px = 71,
+    py = 95
+}
+  
+
 
 local function has_any_enhancement(card)
     card.extra_enhancements = nil
@@ -23,7 +38,7 @@ SMODS.Joker {
     loc_txt = {
         name = "Fragile Heart",
         text = {
-            "Enhances played {C:red}Hearts{}",
+            "Enhances played {C:red}Hearts{}", -- [[todo]] use localized value
             "{C:green}#1# in #2#{} chance played {C:red}heart{}",
             "is destroyed"
         }
@@ -46,7 +61,7 @@ SMODS.Joker {
             end
         end
 
-        if context.destroy_card and context.cardarea == G.play then
+        if context.destroy_card and context.cardarea == G.play and context.other_card:is_suit('Hearts') then
             return {
                 remove = pseudorandom('hearts', 0, 1) < G.GAME.probabilities.normal / card.ability.extra.odds
             }
@@ -58,6 +73,20 @@ SMODS.Joker {
     perishable_compat = true
 }
 
+SMODS.Suit {
+    key = "broken-heart",
+    card_key = "BH",
+    pos = { y = 0 },
+    ui_pos = 5,
+    loc_txt = {
+        singular = "Broken Heart",
+        plural = "Broken Hearts"
+    },
+    lc_atlas = 'LC_deck',
+    hc_atlas = 'HC_deck'
+}
+
+-- serves to test features, comment out before creating a release
 SMODS.Challenge {
     key = 'debug',
     loc_txt = {
@@ -76,5 +105,25 @@ SMODS.Challenge {
             { id = "reroll_cost", value = 0 },
             { id = "joker_slots", value = 150 }
         }
+    },
+    deck = {
+        cards = { 
+            { s = 'tarnished_BH', r = "A" }, 
+            { s = 'tarnished_BH', r = "K" }, 
+            { s = 'tarnished_BH', r = "Q" }, 
+            { s = 'tarnished_BH', r = "J" }, 
+            { s = 'tarnished_BH', r = "T" }, 
+            { s = 'tarnished_BH', r = "9" }, 
+            { s = 'tarnished_BH', r = "8" }, 
+            { s = 'tarnished_BH', r = "7" }, 
+            { s = 'tarnished_BH', r = "6" }, 
+            { s = 'tarnished_BH', r = "5" }, 
+            { s = 'tarnished_BH', r = "4" }, 
+            { s = 'tarnished_BH', r = "3" }, 
+            { s = 'tarnished_BH', r = "2" }, 
+            { s = 'tarnished_BH', r = "A" }, 
+    
+        }
     }
 }
+
