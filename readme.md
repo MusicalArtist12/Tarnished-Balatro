@@ -1,0 +1,5 @@
+# Tarnished
+
+## Requirements
+- Lovely
+- Steammodded
