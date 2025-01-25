@@ -1,0 +1,17 @@
+{
+    "id": "tarnished-balatro",
+    "name": "Tarnished Balatro",
+    "display_name": "Tarnished",
+    "author": ["MusicalArtist12"],
+    "description": "Adds tarnished suits, hands, and jokers",
+    "prefix": "tarnished",
+    "main_file": "Tarnished.lua",
+    "priority": 0,
+    "badge_colour": "",
+	"badge_text_colour": "",
+    "version": "0.0.1~",
+    "dependencies": [
+        "Steamodded",
+        "Lovely (>=0.7)"
+    ]
+}
