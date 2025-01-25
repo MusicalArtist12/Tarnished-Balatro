@@ -6,12 +6,13 @@
     "description": "Adds tarnished suits, hands, and jokers",
     "prefix": "tarnished",
     "main_file": "Tarnished.lua",
-    "priority": 0,
+    "priority": 10,
     "badge_colour": "",
 	"badge_text_colour": "",
     "version": "0.0.1~",
     "dependencies": [
         "Steamodded",
-        "Lovely (>=0.7)"
+        "Lovely (>=0.7)",
+        "SpectrumFramework (>=0.4.1)"
     ]
 }

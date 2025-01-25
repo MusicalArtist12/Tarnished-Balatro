@@ -3,9 +3,7 @@
 ## Requirements
 - Lovely
 - Steammodded
-
-## Conflicts
-- Bunco (since this also has spectrum hands)
+- [wingedcatgirl/SpectrumFramework](https://github.com/wingedcatgirl/SpectrumFramework)
 
 # Assets Needed
 - Tarnished Suits

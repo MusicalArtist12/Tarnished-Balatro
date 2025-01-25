@@ -24,17 +24,16 @@ SMODS.Joker {
         
         -- check for null?
         -- score, then add enhancement
-        if context.individual 
-        and context.cardarea == G.play then
-            if context.other_card:is_suit('Hearts') 
-            and not has_any_enhancement(context.other_card) then
-                context.other_card:set_ability(G.P_CENTERS[SMODS.poll_enhancement({ guaranteed = true })], nill, true)
-                return {}
-            end
+        if context.individual and context.cardarea == G.play
+        and not context.other_card == nil and context.other_card:is_suit('Hearts') 
+        and not TARNISHED:has_any_enhancement(context.other_card) then
+            context.other_card:set_ability(G.P_CENTERS[SMODS.poll_enhancement({ guaranteed = true })], nill, true)
+            return {}
         end
 
         if context.destroy_card 
         and context.cardarea == G.play 
+        and not context.other_card == nil 
         and context.other_card:is_suit('Hearts') then
             return {
                 remove = pseudorandom('hearts', 0, 1) < G.GAME.probabilities.normal / card.ability.extra.odds

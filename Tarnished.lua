@@ -51,12 +51,12 @@ SMODS.Atlas {
 
 -- table for the items that unlock with Mausoleum Voucher
 TARNISHED = {
-    mausoleum_voucher_unlocked = false
+    tarnished_pool = false
 }
 
 TARNISHED.Joker = SMODS.Joker:extend {
     in_pool = function(self, args) 
-        return TARNISHED.mausoleum_voucher_unlocked
+        return TARNISHED.tarnished_pool
     end
 }
 
@@ -71,7 +71,7 @@ TARNISHED.Suit = SMODS.Suit:extend {
             return false
         end
 
-        return TARNISHED.mausoleum_voucher_unlocked
+        return TARNISHED.tarnished_pool
     end
 }
 
@@ -85,3 +85,4 @@ for _, path in ipairs {
 } do
     assert(SMODS.load_file(path))()
 end
+

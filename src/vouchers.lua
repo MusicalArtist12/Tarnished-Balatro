@@ -12,7 +12,7 @@ SMODS.Voucher {
         unlocked = true
     },
     redeem = function(self, card) 
-        TARNISHED.mausoleum_voucher_unlocked = true
+        TARNISHED.tarnished_pool = true
     end,
     calculate = function(self, card, context) 
         
