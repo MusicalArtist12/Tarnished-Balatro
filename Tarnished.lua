@@ -1,3 +1,5 @@
+-- if we recolor the deck, we should also overwrite C:SUITS to match... same of course with our modded colors.
+
 
 SMODS.Atlas {
     key = "Jokers",
@@ -82,7 +84,6 @@ TARNISHED.Suit = SMODS.Suit:extend {
 }
 
 for _, path in ipairs {
-    "src/utils.lua",
     "src/jokers.lua",
     "src/suits.lua",
     "src/vouchers.lua",
