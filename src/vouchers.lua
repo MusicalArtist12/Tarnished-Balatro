@@ -40,7 +40,13 @@ SMODS.Voucher {
     cost = 10,
     config = {
         discovered = false,
-        unlocked = true
+        unlocked = true,
+        extra = {
+            heart_odds = 2,
+            club_odds = 2,
+            diamond_odds = 2,
+            spade_odds = 2
+        }
     },
     redeem = function(self, card) 
         TARNISHED.tarnished_pool = true
@@ -50,26 +56,23 @@ SMODS.Voucher {
         -- hearts
         if context.remove_playing_cards == true and context.removed then
             for i=1, #context.removed do
-                if context.removed[i]:is_suit('Hearts') then
+                if context.removed[i]:is_suit('Hearts') 
+                and pseudorandom('hearts', 0, 1) < (G.GAME.probabilities.normal / card.ability.extra.heart_odds) then
                     assert(add_tranished_variant(context.removed[i]))
                     SMODS.calculate_effect({
                         message = "Tarnished"
                     }, context.removed[i])
                 end
-                SMODS.calculate_effect({
-                    message = "Safe"
-                }, context.removed[i])
             end
-            
             return {}
         end
 
         -- clubs
         if context.cardarea == G.hand and context.individual then
             -- G.hand.cards - turn clubs into overgrown clubs
-            if context.other_card:is_suit('Clubs') then
+            if context.other_card:is_suit('Clubs')
+            and pseudorandom('clubs', 0, 1) < (G.GAME.probabilities.normal / card.ability.extra.club_odds) then
                 assert(SMODS.change_base(context.other_card, 'tarnished_overgrown-club', nil))
-                
                 SMODS.calculate_effect({
                     message = "Tarnished"
                 }, context.other_card)
@@ -77,32 +80,28 @@ SMODS.Voucher {
             return {}
         end
 
-        
         -- spades
         if context.discard then
-            if context.other_card:is_suit('Spades') then
-                
+            if context.other_card:is_suit('Spades') 
+            and pseudorandom('spades', 0, 1) < (G.GAME.probabilities.normal / card.ability.extra.spade_odds) then
+                assert(SMODS.change_base(context.other_card, 'tarnished_rusty-spade', nil))
                 SMODS.calculate_effect({
                     message = "Tarnished"
                 }, context.other_card)
-
-                assert(SMODS.change_base(context.other_card, 'tarnished_rusty-spade', nil))
             end
-            -- context.other_card ? or context.full_hand - turn these into spades
         end
-
 
         -- diamonds
         if context.playing_card_added then
             for i=1, #context.cards do
-                if context.cards[i]:is_suit('Diamonds') then
+                if context.cards[i]:is_suit('Diamonds') 
+                and pseudorandom('diamonds', 0, 1) < (G.GAME.probabilities.normal / card.ability.extra.diamond_odds)  then
                     assert(add_tranished_variant(context.cards[i]))
                     SMODS.calculate_effect({
                         message = "Tarnished"
                     }, context.cards[i])
                 end
             end
-            -- context.cards -- add a tarnished diamond 
             return {}
         end
     end
