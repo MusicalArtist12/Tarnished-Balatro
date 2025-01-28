@@ -1,3 +1,6 @@
 TARNISHED.has_any_enhancement = function(card)
-    return #SMODS.get_enhancements(card) > 0
+    if card.config then
+        return card.config.center.key == "c_base"
+    end
+    return false
 end
