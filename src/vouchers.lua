@@ -16,6 +16,8 @@ local add_tranished_variant = function(card)
         front = G.P_CARDS[suit .. '_' .. rank],
         center = G.P_CENTERS.c_base,
     }, G.hand, nil, nil, nil)
+
+    return true
 end
 
 -- [[TODO]] fix the description... its bad
@@ -49,7 +51,7 @@ SMODS.Voucher {
         if context.remove_playing_cards == true and context.removed then
             for i=1, #context.removed do
                 if context.removed[i]:is_suit('Hearts') then
-                    add_tranished_variant(context.removed[i])
+                    assert(add_tranished_variant(context.removed[i]))
                     SMODS.calculate_effect({
                         message = "Tarnished"
                     }, context.removed[i])
@@ -63,20 +65,15 @@ SMODS.Voucher {
         end
 
         -- clubs
-        if context.after and context.cardarea == G.play then
+        if context.cardarea == G.hand and context.individual then
             -- G.hand.cards - turn clubs into overgrown clubs
-            for i=1, #G.hand.cards do
-                if G.hand.cards[i]:is_suit('Clubs') then
-                    G.hand.cards[i] = SMODS.change_base(G.hand.cards[i], 'tarnished_OC', nil)
-                    SMODS.calculate_effect({
-                        message = "Tarnished"
-                    }, G.hand.cards[i])
-                end
+            if context.other_card:is_suit('Clubs') then
+                assert(SMODS.change_base(context.other_card, 'tarnished_overgrown-club', nil))
+                
                 SMODS.calculate_effect({
-                    message = "Safe"
-                }, G.hand.cards[i])
+                    message = "Tarnished"
+                }, context.other_card)
             end
-
             return {}
         end
 
@@ -90,27 +87,20 @@ SMODS.Voucher {
                 }, context.other_card)
 
                 assert(SMODS.change_base(context.other_card, 'tarnished_rusty-spade', nil))
-            else
-                SMODS.calculate_effect({
-                    message = "Safe"
-                }, context.other_card)
             end
             -- context.other_card ? or context.full_hand - turn these into spades
         end
 
 
         -- diamonds
-        if context.playing_card_added and context.cardarea == G.deck then
+        if context.playing_card_added then
             for i=1, #context.cards do
                 if context.cards[i]:is_suit('Diamonds') then
-                    add_tranished_variant(context.cards[i])
+                    assert(add_tranished_variant(context.cards[i]))
                     SMODS.calculate_effect({
                         message = "Tarnished"
                     }, context.cards[i])
                 end
-                SMODS.calculate_effect({
-                    message = "Safe"
-                }, context.cards[i])
             end
             -- context.cards -- add a tarnished diamond 
             return {}

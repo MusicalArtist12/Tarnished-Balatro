@@ -16,12 +16,14 @@ SMODS.Challenge {
             { id = "discards", value = 10 },
             { id = "hands", value = 10 },
             { id = "reroll_cost", value = 0 },
-            { id = "joker_slots", value = 150 }
+            { id = "joker_slots", value = 150 },
+            { id = "consumable_slots", value = 100 }
         }
     },
     vouchers = {
         { id = 'v_tarnished_mausoleum' }
     },
+    consumeables = {},
     deck = {
         type = 'Challenge Deck',
         cards = { 
@@ -146,7 +148,7 @@ SMODS.Challenge {
 SMODS.Challenge {
     key = 'debugb',
     loc_txt = {
-        name = "Debug2",
+        name = "Debug Standard Deck",
         text = "test"
     },
     jokers = {
@@ -159,11 +161,17 @@ SMODS.Challenge {
             { id = "discards", value = 10 },
             { id = "hands", value = 10 },
             { id = "reroll_cost", value = 0 },
-            { id = "joker_slots", value = 150 }
+            { id = "joker_slots", value = 150 },
+            { id = "consumable_slots", value = 100 }
         }
     },
     vouchers = {
         { id = 'v_tarnished_mausoleum' }
+    },
+    consumeables = {
+        { id = 'c_cryptid' },
+        { id = 'c_cryptid' },
+        { id = 'c_cryptid' },
     },
     deck = {
         type = 'Challenge Deck',
