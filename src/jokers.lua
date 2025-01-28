@@ -6,7 +6,7 @@ SMODS.Joker {
     loc_txt = {
         name = "Fragile Heart",
         text = {
-            "Enhances scoring {C:SUITS:Hearts}Hearts{}", -- [[todo]] use localized name
+            "Enhances scoring {C:SUITS:Hearts}Hearts{}", -- [[todo]] use localized name, but also this doesn't work
             "{C:green}#1# in #2#{} chance played {C:SUITS:Hearts}heart{}",
             "is destroyed"
         }
