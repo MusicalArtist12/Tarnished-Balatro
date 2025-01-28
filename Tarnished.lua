@@ -54,6 +54,12 @@ TARNISHED = {
     tarnished_pool = false
 }
 
+G.E_MANAGER:add_event(Event({
+    func = function()
+        
+    end
+}))
+
 TARNISHED.Joker = SMODS.Joker:extend {
     in_pool = function(self, args) 
         return TARNISHED.tarnished_pool

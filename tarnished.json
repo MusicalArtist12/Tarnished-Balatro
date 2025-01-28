@@ -6,7 +6,7 @@
     "description": "Adds tarnished suits, hands, and jokers",
     "prefix": "tarnished",
     "main_file": "Tarnished.lua",
-    "priority": 10,
+    "priority": 0,
     "badge_colour": "",
 	"badge_text_colour": "",
     "version": "0.0.1~",

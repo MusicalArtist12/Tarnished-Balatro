@@ -8,7 +8,7 @@ SMODS.Voucher {
     pos = { y = 0, x = 7 },
     cost = 10,
     config = {
-        discovered = true,
+        discovered = false,
         unlocked = true
     },
     redeem = function(self, card) 
@@ -31,7 +31,7 @@ SMODS.Voucher {
     pos = { y = 0, x = 7 },
     cost = 10,
     config = {
-        discovered = true,
+        discovered = false,
         unlocked = true
     },
 }
